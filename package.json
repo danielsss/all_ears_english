@@ -1,0 +1,36 @@
+{
+  "name": "all_ears_english",
+  "version": "1.0.10",
+  "description": "This repository is only allowed to use for learning English",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
+    "@typescript-eslint/parser": "^4.15.2",
+    "eslint": "^7.21.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  },
+  "keywords": [
+    "english",
+    "all_ears_english",
+    "all_ears",
+    "all_ears_transcript",
+    "transcript"
+  ],
+  "bugs": {
+    "url": "https://github.com/danielsss/all_ears_english/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielsss/all_ears_english.git"
+  },
+  "homepage": "https://github.com/danielsss/all_ears_english#readme",
+  "author": "danielsss",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
