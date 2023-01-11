@@ -22,5 +22,11 @@ const urllib = (orig: string, options: Record<string, any>): string => {
   return orig;
 }
 
+async function timeout(ms: number = 1000) {
+  return new Promise((resolve) => {
+    setTimeout(() => { resolve(true); }, ms);
+  });
+}
 
-export { urllib };
+
+export { urllib, timeout };

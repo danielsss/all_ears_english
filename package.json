@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=dev DEBUG=all_ears_english:* mocha",
-    "preview": "DEBUG=all_ears_english:* npx ts-node src/bin/preview.ts"
+    "preview": "DEBUG=all_ears_english:* npx ts-node src/bin/preview.ts",
+    "puppy": "DEBUG=all_ears_english:* npx ts-node src/bin/puppy.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
@@ -38,6 +39,8 @@
   "dependencies": {
     "axios": "^1.2.2",
     "debug": "^4.3.4",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "nodejs-file-downloader": "^4.10.6",
+    "puppeteer": "^19.5.0"
   }
 }

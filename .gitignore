@@ -108,3 +108,5 @@ dist
 
 # DS Store
 .DS_Store
+
+*.mp3
