@@ -1,4 +1,4 @@
-![](https://i.scdn.co/image/ab6765630000ba8a98cd596d73e4504e16b512b8)
+![](https://www.allearsenglish.com/wp-content/uploads/2020/05/Team-Image-Blob-3-1.png)
 
 * [AEE Episode 1: Meet Your English Teachers](transcript/0KA0RieVbZCZrB6cjPehkQ.docx) - 2013-09-18 - [🔗](https://open.spotify.com/episode/0KA0RieVbZCZrB6cjPehkQ) - [📥](https://dcs.megaphone.fm/ALLE5257275004.mp3?key=26ae0d9d737635f52f87c3bf423dac24&request_event_id=9acd6bf9-8720-46a1-8d5e-e2c69f76678c)
 * [AEE Episode 2: Interviewing in the United States](transcript/00rSoQZlMJc7QwR9RYaJSh.docx) - 2013-11-16 - [🔗](https://open.spotify.com/episode/00rSoQZlMJc7QwR9RYaJSh) - [📥](https://dcs.megaphone.fm/ALLE6311409004.mp3?key=e0e35b6f969aa997921966d54b6b197e&request_event_id=323e6f24-d806-4700-b397-63984b127627)

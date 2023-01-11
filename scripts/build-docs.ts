@@ -27,7 +27,7 @@ async function main() {
     }
   }
 
-  poster = `![](${previews[filenames[0]].images[0].url})\n\n`;
+  poster = `![](https://www.allearsenglish.com/wp-content/uploads/2020/05/Team-Image-Blob-3-1.png)\n\n`;
 
   for (const name of filenames) {
     body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date}`;
