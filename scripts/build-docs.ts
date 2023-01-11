@@ -31,7 +31,6 @@ async function main() {
   poster = `![](${previews[filenames[0]].images[0].url})\n\n`;
 
   for (const name of filenames) {
-    body += `\n### -\n\n`;
     body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date}\n`;
   }
 
