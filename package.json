@@ -7,7 +7,8 @@
     "test": "NODE_ENV=dev DEBUG=all_ears_english:* mocha",
     "preview": "DEBUG=all_ears_english:* npx ts-node src/bin/preview.ts",
     "puppy": "DEBUG=all_ears_english:* npx ts-node src/bin/puppy.ts",
-    "build": "DEBUG=all_ears_english:* npx ts-node scripts/build-docs.ts"
+    "build": "DEBUG=all_ears_english:* npx ts-node scripts/build-docs.ts",
+    "download:5": "DEBUG=all_ears_english:* npx ts-node src/bin/downloader.ts"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",

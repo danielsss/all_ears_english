@@ -31,12 +31,7 @@ async function main() {
       url: previews[downloadKeys[i]].download_url,
       directory,
       onBeforeSave(finalName: string): string | void {
-        let name = previews[downloadKeys[i]].name;
-        if (name.includes(':')) {
-          const arr = name.split(':');
-          name = arr[0].split(' ').join('_');
-        }
-        return name + '.mp3';
+        return downloadKeys[i] + '.mp3';
       },
       onProgress: function (percentage, chunk, remainingSize) {
         //Gets called with each chunk.
