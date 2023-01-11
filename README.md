@@ -11,6 +11,6 @@ This repository is only for learning purposes. If there are any infringements of
 
 Don't give up on your dreams.
 
-# Transcript
+# Transcript & Audio
 
-The transcripts can be found [here](./docs/transcript_tree.md).
+The transcript and audio can be found from [here](./docs/transcript_tree.md).
