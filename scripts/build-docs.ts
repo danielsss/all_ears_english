@@ -12,7 +12,6 @@ let body = '';
 async function main() {
   const r = await readdir(transcripts);
   const unsortedFilenames = r.map(file => file.split('.')[0]);
-  console.info(unsortedFilenames);
 
   const keys = Object.keys(previews);
   const filenames = [];
@@ -31,7 +30,8 @@ async function main() {
   poster = `![](${previews[filenames[0]].images[0].url})\n\n`;
 
   for (const name of filenames) {
-    body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date} - [🔗](${previews[name].external_url})\n`;
+    body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date}`;
+    body += ` - [🔗](${previews[name].external_url}) - [📥](${previews[name].download_url})\n`
   }
 
   await writeFile(doc, poster + body);
