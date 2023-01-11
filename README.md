@@ -1,5 +1,7 @@
+꒰⑅ᵕ༚ᵕ꒱ ˖♡
+
 # [All Ears English](https://www.allearsenglish.com/)
-🏫 🏫 🏫
+
 
 # Preface 💭💭💭
 
