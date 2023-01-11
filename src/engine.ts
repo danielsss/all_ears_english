@@ -14,14 +14,18 @@ const debug = require('debug')('all_ears_english:engine');
 
 export interface TokenResponse {
   access_token: string;
-  token_type: string;
-  expires_in: number;
+  token_type?: string;
+  expires_in?: number;
 }
 
 
 class Engine {
 
   public episodeCount: number = 0;
+
+  protected expired: boolean = true;
+
+  protected t: TokenResponse;
 
   constructor() {}
 
@@ -59,6 +63,7 @@ class Engine {
       if (response.status !== 200) {
         return 0;
       }
+      this.episodeCount = response.data.total_episodes;
       return response.data.total_episodes;
     };
     return axios.get<number>(urllib(url, options), { headers: this.header(tokenBody.access_token) })
@@ -70,6 +75,10 @@ class Engine {
    * @return { Promise<TokenResponse> }
    */
   public async token(): Promise<TokenResponse> {
+    if (!this.expired) {
+      debug('using old token %s', this.t.access_token);
+      return this.t;
+    }
     const contentType = 'application/x-www-form-urlencoded';
     const headers = {
       'Authorization': this.authorization(),
@@ -81,6 +90,9 @@ class Engine {
       if (response.status !== 200) {
         return null;
       }
+      setTimeout(() => { this.expired = true }, 1000 * 60 * 60 - 10);
+      this.t = response.data;
+      this.expired = false;
       return response.data;
     };
     return axios.post<TokenResponse>(CLIENT_TOKEN_INTERFACE, options,{ headers })
