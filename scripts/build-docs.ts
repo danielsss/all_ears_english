@@ -31,7 +31,7 @@ async function main() {
   poster = `![](${previews[filenames[0]].images[0].url})\n\n`;
 
   for (const name of filenames) {
-    body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date}\n`;
+    body += `* [${previews[name].name}](transcript/${name}.docx) - ${previews[name].release_date} - [🔗](${previews[name].external_url})\n`;
   }
 
   await writeFile(doc, poster + body);
