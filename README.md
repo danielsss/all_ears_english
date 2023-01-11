@@ -4,6 +4,8 @@ If possible, Please go to the [official website](https://www.allearsenglish.com/
 
 # [All Ears English](https://www.allearsenglish.com/)
 
+This repository is only for learning purposes. If there are any infringements of your rights, please contact me to REMOVE(⚠️⚠️⚠️).
+
 
 # Preface 💭💭💭
 
