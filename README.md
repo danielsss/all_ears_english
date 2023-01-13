@@ -15,4 +15,4 @@ Don't give up on your dreams.
 
 The transcript and audio can be found from [here](./docs/transcript_tree.md).
 
-> All the transcripts may not be accurate because it is extracted by the AI tool.
+> 📢📢📢 All the transcripts may not be accurate because it is extracted by the AI tool.
