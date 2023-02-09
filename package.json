@@ -8,7 +8,8 @@
     "preview": "DEBUG=all_ears_english:* npx ts-node src/bin/preview.ts",
     "puppy": "DEBUG=all_ears_english:* npx ts-node src/bin/puppy.ts",
     "build": "DEBUG=all_ears_english:* npx ts-node scripts/build-docs.ts",
-    "download:5": "DEBUG=all_ears_english:* npx ts-node src/bin/downloader.ts"
+    "download:5": "DEBUG=all_ears_english:* npx ts-node src/bin/downloader.ts",
+    "preinstall": "rm -rf ./.git/hooks/pre-commit && cp ./.githooks/pre-commit/filter.sh ./.git/hooks/pre-commit && chmod +x ./.git/hooks/pre-commit"
   },
   "devDependencies": {
     "@types/chai": "^4.3.4",
