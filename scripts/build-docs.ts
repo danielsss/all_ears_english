@@ -1,5 +1,6 @@
 import { readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import * as showdown from 'showdown';
 
 
 const transcripts = join(__dirname, '../docs/transcript');
@@ -39,6 +40,21 @@ async function main() {
   }
 
   await writeFile(doc, poster + body);
+  const s = new showdown.Converter();
+  const html = s.makeHtml(poster + body);
+  const prefix =
+    '<!DOCTYPE html>\n' +
+    '<html lang="en">\n' +
+    '<head>\n' +
+    '  <meta charset="UTF-8">\n' +
+    '  <title>Title</title>\n' +
+    '</head>\n' +
+    '<body><div>';
+  const postfix =
+    '</div></body>\n' +
+    '</html>';
+  await writeFile(doc.replace('.md', '.html'), prefix + html + postfix);
+
 }
 
 
