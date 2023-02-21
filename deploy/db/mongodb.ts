@@ -1,7 +1,7 @@
 import { MongoClient } from 'https://deno.land/x/mongo@v0.31.1/mod.ts';
 
+const client = new MongoClient();
 try {
-  const client = new MongoClient();
   await client.connect({
     db: Deno.env.get('MONGODB_DATABASE'),
     tls: true,
@@ -17,6 +17,8 @@ try {
       db: Deno.env.get('MONGODB_DATABASE'),
       mechanism: 'SCRAM-SHA-1',
     }
+  }).then(() => {
+    console.info('%s has been connected', Deno.env.get('MONGODB_HOST'));
   });
 } catch (err) {
   console.error('Error connecting to MongoDB', err);
