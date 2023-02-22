@@ -27,5 +27,5 @@ try {
 
 export const getPhrases = async function () {
   const phrases = client.database('smt').collection('phrases');
-  return phrases.find();
+  return phrases.find().toArray();
 }
