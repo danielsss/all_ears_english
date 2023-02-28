@@ -25,6 +25,13 @@ try {
   throw err;
 }
 
+export const collection = function (name: string) {
+  if (!name) {
+    throw new Error('should have a name of collection');
+  }
+  return client.database(Deno.env.get('MONGODB_DATABASE')).collection(name);
+}
+
 export const getPhrases = async function () {
   const phrases = client.database('smt').collection('phrases');
   return phrases.find().toArray();
