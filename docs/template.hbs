@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transcript</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.16.4/dist/css/uikit.min.css" />
+  <style>
+    .uk-container {
+      background: linear-gradient(to left,#28a5f5,#1e87f0);
+    }
+  </style>
+
+  <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.4/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.16.4/dist/js/uikit-icons.min.js"></script>
+</head>
+<body>
+<nav class="uk-navbar-container">
+  <div class="uk-container uk-container-expand">
+    <div class="uk-navbar uk-text-center">
+      <a class="uk-navbar-toggle uk-text-center" href="#"></a>
+    </div>
+  </div>
+</nav>
+<div id="ctn">
+  <div uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 200; repeat: true">
+    {{#each conversation}}
+      <div class="uk-margin uk-margin-auto-right uk-margin-auto@m uk-width-1-2@s uk-card uk-card-default uk-card-body uk-width-1-2@m uk-margin-top uk-text-center">
+        {{#with this }}
+          <h3 class="uk-card-title uk-text-center">⏰{{ timeline }}⏰</h3>
+          <p class="uk-text-left">{{ content }}</p>
+        {{/with}}
+      </div>
+    {{/each}}
+  </div>
+</div>
+</body>
+</html>

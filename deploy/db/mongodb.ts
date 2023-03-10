@@ -1,4 +1,13 @@
-import { MongoClient } from 'https://deno.land/x/mongo@v0.31.1/mod.ts';
+import { MongoClient, Collection } from 'https://deno.land/x/mongo@v0.31.1/mod.ts';
+import { load } from 'https://deno.land/std@0.178.0/dotenv/mod.ts';
+import { existsSync } from 'https://deno.land/std@0.177.0/node/fs.ts'
+import * as path from 'https://deno.land/std@0.177.0/node/path/mod.ts';
+
+const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+const env = path.join(__dirname, '../../.env');
+if (existsSync(env)) {
+  await load({ envPath: env, export: true });
+}
 
 const client = new MongoClient();
 try {
@@ -25,7 +34,7 @@ try {
   throw err;
 }
 
-export const collection = function (name: string) {
+export const collection = function<T>(name: string): Collection<T> {
   if (!name) {
     throw new Error('should have a name of collection');
   }

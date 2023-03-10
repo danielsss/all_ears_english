@@ -1,29 +1,43 @@
-import { serve } from 'https://deno.land/std@0.140.0/http/server.ts';
-import * as path from 'https://deno.land/std@0.177.0/node/path.ts';
-import { router } from 'https://crux.land/router@0.0.5';
-import { getPhrases } from './db/mongodb.ts';
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import * as fs from 'https://deno.land/std@0.177.0/node/fs.ts';
+import * as path from 'https://deno.land/std@0.177.0/node/path/mod.ts';
+import { compileTranscript } from './render.ts';
 
-const treeHandler = async function (request: Request): Promise<Response> {
-  const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
-  const tree = path.join(__dirname, '../docs/transcript_tree.html');
+const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
+const app = new Application();
+const router = new Router();
+
+const transcript = async (ctx) => {
+  const transcriptId = ctx?.params?.transcriptId;
+  const txt = path.join(__dirname, `../docs/transcript/${transcriptId}.txt`);
+  if (!fs.existsSync(txt)) {
+    return ctx.response.body = `Resource "${transcriptId}" does not exist`;
+  }
   const decoder = new TextDecoder('utf-8');
-  const contents = await Deno.readFile(tree);
-  return new Response(decoder.decode(contents), {
-    headers: { 'content-type': 'text/html; charset=utf-8' }
-  });
+  const contents = await Deno.readFile(txt);
+  const decoded = decoder.decode(contents).split('\n');
+  const conversation = [];
+  for (let i = 0; i < decoded.length; i++) {
+    if (!decoded[i]) {
+      continue;
+    }
+    const re = /\d:\d\d:\d\d/;
+    if (re.test(decoded[i])) {
+      conversation.push({ timeline: decoded[i], content: decoded[i + 1] });
+      i += 1;
+    }
+  }
+
+  ctx.response.body = await compileTranscript({ name: 'abc', conversation });
 }
 
-const phraseHandler = async function (request: Request): Promise<Response> {
-  const phrases = await getPhrases();
-  return new Response(JSON.stringify(phrases || {}), {
-    headers: { 'content-type': 'application/json; charset=utf-8' }
-  });
-}
+router.get('/transcript/:transcriptId', transcript);
 
+app.use(router.routes());
+app.use(router.allowedMethods());
 
-const handler = router({
-  'GET@/api/v1/phrases': phraseHandler,
-  'GET@/transcript/tree.html': treeHandler,
+app.addEventListener('listen', ({ hostname, port }) => {
+  console.info('Server is running on %s:%d', hostname, port);
 });
 
-serve(handler);
+await app.listen({ port: parseInt(Deno.env.get('HTTP_PORT'), 10) || 8000 }).catch(console.error);

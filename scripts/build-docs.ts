@@ -31,11 +31,11 @@ async function main() {
   }
 
   debug('sorted %d', filenames.length);
-  poster = `![](https://www.allearsenglish.com/wp-content/uploads/2020/05/Team-Image-Blob-3-1.png)\n\n`;
+  poster = `![]()\n\n`;
 
   for (const name of filenames) {
     body += `* [${previews[name].name}](transcript/${name}.txt) - ${previews[name].release_date}`;
-    body += ` - [🔗](${previews[name].external_url}) - [📥](${previews[name].download_url})\n`;
+    body += ` - [🔗](https://sparkles.deno.dev/transcript/${name}) - [📥](${previews[name].download_url})\n`;
     body += `    - ${previews[name].description}\n\n`;
   }
 
