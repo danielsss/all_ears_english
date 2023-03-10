@@ -35,7 +35,7 @@ async function main() {
 
   for (const name of filenames) {
     body += `* [${previews[name].name}](transcript/${name}.txt) - ${previews[name].release_date}`;
-    body += ` - [🔗](https://sparkles.deno.dev/transcript/${name}) - [📥](${previews[name].download_url})\n`;
+    body += ` - [🔗](https://aee.gofloat.cn/transcript/${name}) - [📥](${previews[name].download_url})\n`;
     body += `    - ${previews[name].description}\n\n`;
   }
 

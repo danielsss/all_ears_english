@@ -1,19 +1,41 @@
-import { Application, Router } from "https://deno.land/x/oak/mod.ts";
-import * as fs from 'https://deno.land/std@0.177.0/node/fs.ts';
+import { Application, Router } from 'https://deno.land/x/oak/mod.ts';
+import { compile } from './render.ts';
+import { orderBy } from 'https://raw.githubusercontent.com/lodash/lodash/4.17.21-es/lodash.js';
+import { exists } from './utils.ts';
 import * as path from 'https://deno.land/std@0.177.0/node/path/mod.ts';
-import { compileTranscript } from './render.ts';
+import preview from '../resource/preview.json' assert { type: 'json' };
 
 const __dirname = path.dirname(path.fromFileUrl(import.meta.url));
 const app = new Application();
 const router = new Router();
 
+const preface = async (ctx) => {
+  const dir = path.join(__dirname, '../docs/transcript');
+  const indexOptions = [];
+  for await (const entry of Deno.readDir(dir)) {
+    const id = entry.name.split('.')[0];
+    indexOptions.push({
+      id, transcript_href: `https://aee.gofloat.cn/transcript/${id}`,
+      name: preview[id].name, release_date: preview[id].release_date,
+      playback: preview[id].download_url,
+    });
+  }
+  ctx.response.body = await compile('index', {
+    title: 'Transcript Guide', indexOptions: orderBy(indexOptions, ['release_date'])
+  });
+}
+
 const transcript = async (ctx) => {
   const transcriptId = ctx?.params?.transcriptId;
   const txt = path.join(__dirname, `../docs/transcript/${transcriptId}.txt`);
-  console.info('checking ... %s', txt);
+  if (!(await exists(txt))) {
+    console.info('checking ... %s', txt);
+    return ctx.response.body = 'Invalid parameter';
+  }
   const decoder = new TextDecoder('utf-8');
   const contents = await Deno.readFile(txt);
-  const decoded = decoder.decode(contents).split('\n');
+  let decoded = decoder.decode(contents).split(/(?=\d:\d\d:\d\d)|(?<=\d:\d\d:\d\d)/g);
+  decoded = decoded.filter(e => e);
   const conversation = [];
   for (let i = 0; i < decoded.length; i++) {
     if (!decoded[i]) {
@@ -26,10 +48,12 @@ const transcript = async (ctx) => {
     }
   }
 
-  ctx.response.body = await compileTranscript({ name: 'abc', conversation });
+  ctx.response.body = await compile('template', { title: 'Transcript Content', conversation });
 }
 
 router.get('/transcript/:transcriptId', transcript);
+router.get('/index.html', preface);
+router.get('/', preface);
 
 app.use(router.routes());
 app.use(router.allowedMethods());

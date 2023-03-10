@@ -23,12 +23,19 @@
   </div>
 </nav>
 <div id="ctn">
-  <div uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 200; repeat: true">
-    {{#each conversation}}
+  <div uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 100; repeat: true">
+    {{#each indexOptions}}
       <div class="uk-margin uk-margin-auto-right uk-margin-auto@m uk-width-1-2@s uk-card uk-card-default uk-card-body uk-width-1-2@m uk-margin-top uk-text-center">
         {{#with this }}
-          <h3 class="uk-card-title uk-text-center">⏰{{ timeline }}⏰</h3>
-          <p class="uk-text-left">{{ content }}</p>
+          <h3 class="uk-card-title uk-text-center">
+            ⏰Released at: {{ release_date }}⏰
+          </h3>
+          <p class="uk-text-left uk-text-center">
+            <a href="{{transcript_href}}" target="_blank">{{ name }}</a>
+          </p>
+          <audio controls>
+            <source src="{{playback}}" type="audio/mpeg">
+          </audio>
         {{/with}}
       </div>
     {{/each}}
