@@ -20,3 +20,4 @@ jobs:
         with:
           project: "sparkles"
           entrypoint: "./deploy/handler.ts" # TODO: update entrypoint
+          root: "."
