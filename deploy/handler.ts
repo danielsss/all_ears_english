@@ -10,6 +10,7 @@ const router = new Router();
 const transcript = async (ctx) => {
   const transcriptId = ctx?.params?.transcriptId;
   const txt = path.join(__dirname, `../docs/transcript/${transcriptId}.txt`);
+  console.info('checking ...%s', txt);
   if (!fs.existsSync(txt)) {
     return ctx.response.body = `Resource "${transcriptId}" does not exist`;
   }
