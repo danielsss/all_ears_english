@@ -33,7 +33,7 @@
           <p class="uk-text-left uk-text-center">
             <a href="{{transcript_href}}" target="_blank">{{ name }}</a>
           </p>
-          <audio controls>
+          <audio preload="none" controls>
             <source src="{{playback}}" type="audio/mpeg">
           </audio>
         {{/with}}
