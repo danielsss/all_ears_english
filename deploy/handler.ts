@@ -55,6 +55,20 @@ router.get('/transcript/:transcriptId', transcript);
 router.get('/index.html', preface);
 router.get('/', preface);
 
+app.use(async (ctx, next) => {
+  const extensions = (ctx.request.url.pathname || '').split('.');
+  const suffix = extensions[1];
+  const suffixes = ['ico', 'json'];
+  if (suffixes.includes(suffix)) {
+    return ctx.send({
+      root: path.join(__dirname, '../resource/'),
+      index: ctx.request.url.pathname
+    });
+  }
+
+  await next();
+});
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
